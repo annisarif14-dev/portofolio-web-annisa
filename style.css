@@ -1,0 +1,184 @@
+/*Basic*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #FAF4F4; 
+  color: #4A3E3D;            
+}
+
+/*Menu Navigasi*/
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #E8B4B8; /* Pink manis */
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4A3E3D;
+  font-weight: bold;
+}
+
+.nav-links a.active {
+  color: #E8B4B8;
+}
+
+/*Home*/
+.home-section {
+  padding: 60px 8%;
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-text h1 {
+  font-size: 36px;
+  margin-top: 5px;
+}
+
+.subtitle {
+  color: #D4AF37; /* Emas */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/*Profil*/
+.bullet-list {
+  list-style: none;
+  margin-bottom: 25px;
+}
+
+.bullet-list li {
+  margin-bottom: 10px;
+  color: #7A6C6B;
+}
+
+.bullet-list li i {
+  color: #E8B4B8;
+  margin-right: 8px;
+}
+
+/*Portofolio*/
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #E8B4B8;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+}
+
+/*Profil*/
+.hero-img img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 5px solid #E8B4B8;
+}
+
+/*Portofolio*/
+.portfolio-section {
+  padding: 60px 8%;
+  text-align: center;
+}
+
+.section-title {
+  margin-bottom: 30px;
+}
+
+.portfolio-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/*Card*/
+.portfolio-list {
+  text-align: left;
+}
+
+.portfolio-list li {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.list-icon {
+  font-size: 24px;
+  color: #E8B4B8;
+}
+
+.list-content h3 {
+  margin-bottom: 5px;
+}
+
+.list-content p {
+  color: #7A6C6B;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.card-link {
+  color: #D4AF37;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/*Contact & Footer*/
+.contact-section {
+  padding: 60px 8%;
+  text-align: center;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-btn {
+  text-decoration: none;
+  color: #4A3E3D;
+  padding: 10px 20px;
+  border: 1px solid #E8B4B8;
+  border-radius: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #7A6C6B;
+  font-size: 14px;
+}
