@@ -1,102 +1,307 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Portofolio Annisa</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annisa Rifa Aulia | Personal Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="logo">MyPortfolio<span></span></div>
-    <ul class="nav-links">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#portfolio">Portofolio</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- PARTIKEL ANIMASI BACKGROUND -->
+  <canvas id="particleCanvas"></canvas>
 
-  <section id="home" class="home-section">
-    <div class="hero-content">
-
-     <div class="hero-img">
-        <img src="Foto Annisa.png" alt="Foto Profil Annisa">
+  <!-- ================= 1. OPENING ENVELOPE & QUIZ OVERLAY ================= -->
+  <div id="envelopeOverlay" class="envelope-overlay">
+    
+    <!-- WADAH AMPLOP -->
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="startQuiz()">
+      <div class="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-pocket"></div>
+        <div class="envelope-heart"><i class="fas fa-lock"></i></div>
       </div>
+      <p class="envelope-hint"><i class="fas fa-hand-pointer"></i> Klik amplop untuk membuka tantangan akses!</p>
+    </div>
+
+    <!-- KOTAK QUIZ MATEMATIKA -->
+    <div class="quiz-box" id="quizBox">
+      <span class="letter-stamp">🔐 Keamanan Akses Portofolio</span>
+      <h3>Selesaikan Tantangan Ini!</h3>
+      <p id="quizQuestion" class="quiz-question">Berapa hasil dari ... ?</p>
       
-      <div class="hero-text">
-        <h3>Halo, Saya</h3>
-        <h1>Annisa Rifa Aulia</h1>
-        <p class="subtitle">Calon Front-End Developer</p>
-        <ul class="bullet-list">
-          <li><i class="fas fa-sparkles"></i> Seorang Mahasiswa dari Program Studi Teknologi Informasi yang memiliki ketertarikan terhadap Dunia Teknologi.</li>
-        <a href="#portfolio" class="btn">Lihat Portofolio</a>
+      <div class="quiz-input-group">
+        <input type="number" id="quizAnswer" placeholder="Masukkan jawaban..." onkeypress="if(event.key === 'Enter') checkQuizAnswer()">
+        <button class="btn-submit-quiz" onclick="checkQuizAnswer()">Jawab 🚀</button>
       </div>
-
+      <p id="quizFeedback" class="quiz-feedback"></p>
     </div>
-  </section>
 
-  <section id="portfolio" class="portfolio-section">
-    <h2 class="section-title">Portofolio Sertifikasi</h2>
+    <!-- SURAT TENTANG AKU -->
+    <div class="letter" id="letter">
+      <div class="letter-content">
+        <span class="letter-stamp">✨ Annisa.dev</span>
+        <h2>Akses Diterima! Halo 👋</h2>
+        <p>
+          Saya <strong>Annisa Rifa Aulia</strong>, mahasiswi Teknologi Informasi di Politeknik Negeri Madiun. 
+          Seorang yang ekspresif, energik, dan antusias mengeksplorasi dunia pemrograman, manajemen proyek, serta desain digital.
+          <br><br>
+          <em>"Turn code into art & innovation."</em>
+        </p>
+        <button class="btn-enter-site" onclick="enterSite()">
+          Masuk ke Portofolio <i class="fas fa-rocket"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= 2. MAIN WEBSITE CONTENT ================= -->
+  <div id="mainWebsite" class="main-website">
     
-    <div class="portfolio-container">
-      <ul class="bullet-list portfolio-list">
-        
-    
-        <li>
-          <div class="list-icon"><i class="fas fa-award"></i></div>
-          <div class="list-content">
-            <h3>Sertifikasi</h3>
-            <p>Belum Tersedia</p>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
-
-        <li>
-          <div class="list-icon"><i class="fas fa-award"></i></div>
-          <div class="list-content">
-            <h3>Sertifikasi</h3>
-            <p>Belum Tersedia</p>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
-
-        <li>
-          <div class="list-icon"><i class="fas fa-award"></i></div>
-          <div class="list-content">
-            <h3>Sertifikasi</h3>
-            <p>Belum Tersedia</p>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
-
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">✨ Annisa<span>.explore</span></div>
+      <ul class="nav-links">
+        <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#milestones"><i class="fas fa-route"></i> Jejak & Alur</a></li>
+        <li><a href="#portfolio"><i class="fas fa-certificate"></i> Sertifikat</a></li>
+        <li><a href="#terminal-section"><i class="fas fa-terminal"></i> Terminal</a></li>
+        <li><a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a></li>
       </ul>
+    </nav>
+
+    <main class="main-container">
+
+      <!-- HERO SECTION -->
+      <section id="home" class="hero-section">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <div class="role-badge"><i class="fas fa-sparkles"></i> Project Manager & Tech Explorer</div>
+            <h1>Annisa Rifa Aulia</h1>
+            <p class="hero-subtitle">Mahasiswa Teknologi Informasi | Politeknik Negeri Madiun</p>
+            <p class="hero-desc">
+              Fokus pada Software Architecture, Front-End Development, dan Pemrograman Python. Menyukai kolaborasi tim, eksplorasi teknologi baru, dan merancang tampilan web yang estetis.
+            </p>
+            <div class="hero-btns">
+              <a href="#portfolio" class="btn btn-primary"><i class="fas fa-folder-open"></i> Lihat Sertifikat</a>
+              <a href="#terminal-section" class="btn btn-secondary"><i class="fas fa-code"></i> Coba Terminal</a>
+            </div>
+          </div>
+
+          <div class="hero-avatar-box">
+            <div class="avatar-glow-ring">
+              <img src="Foto Annisa.png" alt="Annisa Rifa Aulia" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Annisa+Rifa&background=FF6584&color=fff&size=400';">
+            </div>
+            <span class="floating-chip">🚀 Project Manager</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPOTIFY EMBED API PLAYER WIDGET -->
+      <section id="music-player-section" style="padding: 20px 0 60px 0;">
+        <div class="spotify-embed-container">
+          <div class="spotify-embed-header">
+            <div class="spotify-brand"><i class="fab fa-spotify"></i> Spotify Live Vibes Studio</div>            
+          </div>
+          
+          <div class="spotify-iframe-box">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7g2j70evpW9eklo3ROZJCa?utm_source=generator&si=869e9e4f9d4a42e8" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALUR ROADMAP REKAM JEJAK -->
+      <section id="milestones" class="section-padding">
+        <div class="section-title-wrapper">
+          <h2><i class="fas fa-route" style="color: #ff6584;"></i> Rekam Jejak & Alur Pencapaian</h2>
+          <p>Alur perjalanan akademis, organisasi, dan prestasi dari waktu ke waktu</p>
+        </div>
+
+        <div class="flowchart-container">
+          
+          <div class="flow-step">
+            <div class="flow-marker">
+              <span class="step-num">01</span>
+              <div class="step-icon"><i class="fas fa-school"></i></div>
+            </div>
+            <div class="flow-content">
+              <span class="flow-time">Masa SMK</span>
+              <h3>Alumni SMKN 1 Ngawi (Teknik Komputer & Jaringan)</h3>
+              <p>Menyelesaikan pendidikan kejuruan dengan fokus pada infrastruktur jaringan, hardware, dan sistem komputer.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-marker">
+              <span class="step-num">02</span>
+              <div class="step-icon"><i class="fas fa-campground"></i></div>
+            </div>
+            <div class="flow-content">
+              <span class="flow-time">Tahun 2024</span>
+              <h3>Pramuka Garuda & Delegasi Peran Saka Jatim 2024</h3>
+              <p>Meraih predikat keanggotaan tertinggi <strong>Pramuka Garuda</strong> dan terpilih menjadi kontingen resmi mewakili daerah pada perkemahan Peran Saka Jawa Timur 2024.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-marker">
+              <span class="step-num">03</span>
+              <div class="step-icon"><i class="fas fa-laptop-code"></i></div>
+            </div>
+            <div class="flow-content">
+              <span class="flow-time">2026 - Sekarang</span>
+              <h3>Kuliah TI PNM & Project Manager Kelompok Python</h3>
+              <p>Melanjutkan pendidikan tinggi di Politeknik Negeri Madiun (Teknologi Informasi) dan dipercaya menjadi <strong>Project Manager</strong> tim pengembangan web.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-marker">
+              <span class="step-num">04</span>
+              <div class="step-icon"><i class="fas fa-trophy"></i></div>
+            </div>
+            <div class="flow-content">
+              <span class="flow-time">September 2026</span>
+              <h3>Juara 1 Lomba Sharia Poster Infografis Nasional</h3>
+              <p>Meraih <strong>Juara 1</strong> pada ajang kompetisi Poster Infografis FEB Collaboration Festival 2026 yang diselenggarakan di Malang.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- GALERI SERTIFIKAT & BANNER WANITA NGODING -->
+      <section id="portfolio" class="section-padding">
+        <div class="section-title-wrapper">
+          <h2><i class="fas fa-award" style="color: #38bdf8;"></i> Portofolio Sertifikasi</h2>
+          <p>Kumpulan sertifikasi resmi yang telah berhasil diselesaikan</p>
+        </div>
+
+        <div class="coding-girl-banner">
+          <div class="coding-animation-box">
+            <div class="computer-screen">
+              <div class="code-line line-1"><span>class</span> AnnisaDev:</div>
+              <div class="code-line line-2">&nbsp;&nbsp;def __init__(self):</div>
+              <div class="code-line line-3">&nbsp;&nbsp;&nbsp;&nbsp;self.role = "Project Manager"</div>
+              <div class="code-line line-4">&nbsp;&nbsp;&nbsp;&nbsp;self.skills = ["Python", "JS", "SQL"]</div>
+            </div>
+            <div class="girl-avatar-icon">
+              <i class="fas fa-user-ninja"></i>
+            </div>
+          </div>
+          <div class="coding-banner-text">
+            <h3>Female Tech Explorer & Programmer 👩‍💻✨</h3>
+            <p>Mengkombinasikan logika pemrograman Python, keindahan desain UI/UX, serta kemampuan manajemen proyek untuk menciptakan karya teknologi yang berdampak.</p>
+            <div class="tech-tags">
+              <span><i class="fab fa-python"></i> Python</span>
+              <span><i class="fab fa-html5"></i> HTML5</span>
+              <span><i class="fab fa-css3-alt"></i> CSS3</span>
+              <span><i class="fab fa-js"></i> JavaScript</span>
+              <span><i class="fas fa-database"></i> SQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="member-cards-grid" id="annisaCertGrid">
+          <!-- Rendered via script.js -->
+        </div>
+      </section>
+
+      <!-- TERMINAL VS CODE INTERAKTIF -->
+      <section id="terminal-section" class="section-padding">
+        <div class="section-title-wrapper">
+          <h2><i class="fas fa-terminal" style="color: #38bdf8;"></i> VS Code Interactive Playground</h2>
+          <p>Coba jalankan sintaks atau instruksi singkat di terminal interaktif ini!</p>
+        </div>
+
+        <div class="vscode-terminal-box">
+          <div class="vscode-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="window-title"><i class="fas fa-code-branch"></i> annisa@pnm-dev: ~/portfolio_terminal</div>
+            <div class="preset-buttons">
+              <button onclick="runPreset('help')">help</button>
+              <button onclick="runPreset('python')">python</button>
+              <button onclick="runPreset('about')">about</button>
+              <button onclick="runPreset('clear')">clear</button>
+            </div>
+          </div>
+
+          <div class="vscode-body" id="terminalOutput">
+            <p class="term-welcome">Selamat datang di Annisa OS Terminal v2.0 ✨</p>
+            <p class="term-hint">Ketik <span class="term-cmd">help</span> untuk melihat daftar perintah, atau pilih tombol preset di kanan atas.</p>
+          </div>
+
+          <div class="vscode-input-line">
+            <span class="prompt-text">annisa@pnm-dev:~$</span>
+            <input type="text" id="terminalInput" placeholder="Ketik perintah di sini (contoh: help, python, about)..." onkeypress="handleTerminalKey(event)">
+            <button class="btn-run-term" onclick="executeTerminalCommand()">Run ⚡</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact" class="section-padding">
+        <div class="section-title-wrapper">
+          <h2><i class="fas fa-paper-plane" style="color: #ff6584;"></i> Hubungi Saya</h2>
+          <p>Koneksi langsung & media sosial resmi</p>
+        </div>
+
+        <div class="cards-grid">
+          <a href="https://www.instagram.com/annisaull._?e=372c13c2-c38d-4130-8a54-05d52bdf60ed&g=5" target="_blank" class="contact-card">
+            <div class="contact-icon insta"><i class="fab fa-instagram"></i></div>
+            <div class="contact-card-info">
+              <h3>Instagram</h3>
+              <p class="role-text">@annisaull._</p>
+            </div>
+          </a>
+
+          <a href="http://www.linkedin.com/in/annisa-rifa-aulia-603a6b42a" target="_blank" class="contact-card">
+            <div class="contact-icon linked"><i class="fab fa-linkedin"></i></div>
+            <div class="contact-card-info">
+              <h3>LinkedIn</h3>
+              <p class="role-text">Annisa Rifa Aulia</p>
+            </div>
+          </a>
+
+          <a href="https://github.com/annisarif14-dev" target="_blank" class="contact-card">
+            <div class="contact-icon github"><i class="fab fa-github"></i></div>
+            <div class="contact-card-info">
+              <h3>GitHub</h3>
+              <p class="role-text">annisarif14-dev</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- MODAL LIGHTBOX PREVIEW SERTIFIKAT -->
+    <div id="certModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+        <div class="modal-profile-header">
+          <h3 id="modalTitle">Judul Sertifikat</h3>
+          <span id="modalRole" class="modal-role-badge">Penerbit</span>
+        </div>
+        <hr style="margin: 15px 0; border: none; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="cert-lightbox-img-box">
+          <img id="modalCertImg" src="" alt="Sertifikat">
+        </div>
+      </div>
     </div>
-  </section>
 
-  <section id="contact" class="contact-section">
-    <h2 class="section-title">Hubungi Saya</h2>
-    <p>Mari terhubung melalui media sosial di bawah ini:</p>
+    <footer>
+      <p>&copy; 2026 Annisa Rifa Aulia. Built with Pink-Cyber Aesthetic ✨</p>
+    </footer>
 
-    <div class="contact-links">
-      <a href="https://www.instagram.com/annisaull._?e=372c13c2-c38d-4130-8a54-05d52bdf60ed&g=5" target="_blank" class="contact-btn">
-        <i class="fab fa-instagram"></i> Instagram
-      </a>
-      <a href="http://www.linkedin.com/in/annisa-rifa-aulia-603a6b42a" target="_blank" class="contact-btn">
-        <i class="fab fa-linkedin"></i> LinkedIn
-      </a>
-      <a href="https://github.com/annisarif14-dev" target="_blank" class="contact-btn">
-        <i class="fab fa-github"></i> GitHub
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2026 MyPortfolio. All Rights Reserved.</p>
-  </footer>
+  </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
